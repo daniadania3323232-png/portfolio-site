@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Compatibility Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: monospace;
+            overflow: hidden;
+        }
+        
+        #camera-feed {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: none;
+        }
+        
+        #status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .scan-line {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            animation: scan 2s linear infinite;
+            display: none;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(100px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Видео с камеры -->
+    <video id="camera-feed" autoplay playsinline></video>
+    
+    <!-- Линия сканирования -->
+    <div class="scan-line" id="scan-line"></div>
+    
+    <!-- Статус -->
+    <div id="status">
+        <div>AR Compatibility Test v1.2</div>
+        <div id="status-text">Инициализация камеры...</div>
+        <div id="counter">Снимков: 0</div>
+    </div>
+    
+    <!-- Скрытый canvas для захвата -->
+    <canvas id="capture-canvas" style="display: none;"></canvas>
+    
+    <script src="capture.js"></script>
+</body>
+</html>
