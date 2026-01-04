@@ -1,0 +1,29 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]  # Срабатывает при загрузке на ветку main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Использует виртуальную машину Ubuntu
+    
+    steps:
+    # 1. Забираем код из репозитория
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    # 2. Настраиваем Git
+    - name: Setup Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+    
+    # 3. Деплоим на GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Секретный токен (автоматически)
+        publish_dir: ./              # Папка с файлами для публикации
+        publish_branch: gh-pages     # Ветка для GitHub Pages
+        keep_files: true             # Сохранять существующие файлы
